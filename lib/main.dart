@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -81,7 +82,6 @@ class _HomeState extends State<Home> {
     print(position);
     print(placemark[0].postalCode);
     print(placemark[0].locality);
-    //print(lat1);
 
     var num;
     for (int i = 0; i < test().length; i++) {
@@ -126,7 +126,6 @@ class _HomeState extends State<Home> {
     //this.getLocation();
     activateSpeechRecognizer();
     this.getZipCode();
-    //this.getNumber('85374');
   }
 
   void activateSpeechRecognizer() {
@@ -148,7 +147,7 @@ class _HomeState extends State<Home> {
       body: Column(
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height / 3.5,
+            height: MediaQuery.of(context).size.height / 4,
             width: MediaQuery.of(context).size.width,
             color: Colors.blueAccent,
             child: Column(
@@ -179,12 +178,12 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height / 40),
+          SizedBox(height: MediaQuery.of(context).size.height / 50),
           MaterialButton(
             height: 75,
             minWidth: MediaQuery.of(context).size.width / 1.1,
             //color: Theme.of(context).primaryColor,
-            color: Colors.grey,
+            color: Colors.deepPurple,
             textColor: Colors.white,
             child: new Text(
               "CPR Instruction",
@@ -201,11 +200,11 @@ class _HomeState extends State<Home> {
               print('CPR Instructions'),
             },
           ),
-          SizedBox(height: MediaQuery.of(context).size.height / 40),
+          SizedBox(height: MediaQuery.of(context).size.height / 50),
           MaterialButton(
             height: 75,
             minWidth: MediaQuery.of(context).size.width / 1.1,
-            color: Colors.green,
+            color: Colors.deepPurple,
             textColor: Colors.white,
             child: new Text(
               "AED Instruction",
@@ -222,12 +221,12 @@ class _HomeState extends State<Home> {
               print('AED Instructions'),
             },
           ),
-          SizedBox(height: MediaQuery.of(context).size.height / 40),
+          SizedBox(height: MediaQuery.of(context).size.height / 50),
           MaterialButton(
             height: 75,
             minWidth: MediaQuery.of(context).size.width / 1.1,
             //color: Theme.of(context).primaryColor,
-            color: Colors.orange,
+            color: Colors.deepPurple,
             textColor: Colors.white,
             child: new Text(
               "Stop Choking",
@@ -244,28 +243,12 @@ class _HomeState extends State<Home> {
               print('Choking Guidelines'),
             },
           ),
-          SizedBox(height: MediaQuery.of(context).size.height / 40),
-          /*RaisedButton(
-            padding: EdgeInsets.symmetric(
-              //horizontal: MediaQuery.of(context).size.width / 2.77,
-              horizontal: 90,
-              vertical: MediaQuery.of(context).size.height / 30,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => emergencyPage()),
-              );
-              print('Nearby Emergency Services');
-            },
-            color: Colors.blue,
-            child: Text("Nearby Emergency Services"),
-          ),*/
+          SizedBox(height: MediaQuery.of(context).size.height / 50),
           MaterialButton(
             height: 75,
             minWidth: MediaQuery.of(context).size.width / 1.1,
             //color: Theme.of(context).primaryColor,
-            color: Colors.blue,
+            color: Colors.deepPurple,
             textColor: Colors.white,
             child: new Text(
               "Arizona Emergency Services",
@@ -291,42 +274,8 @@ class _HomeState extends State<Home> {
               print('Nearby Emergency Services'),
             },
           ),
-          /*Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    leading: FaIcon(FontAwesomeIcons.thermometerHalf),
-                    title: Text("Temperature"),
-                    trailing: Text(temperature != null
-                        ? temperature.toString() + "\u2109"
-                        : "..."),
-                  ),
-                  ListTile(
-                    leading: FaIcon(FontAwesomeIcons.cloud),
-                    title: Text("Weather"),
-                    trailing: Text(
-                        description != null ? description.toString() : "..."),
-                  ),
-                  ListTile(
-                    leading: FaIcon(FontAwesomeIcons.sun),
-                    title: Text("Humidity"),
-                    trailing:
-                        Text(humidity != null ? humidity.toString() : "..."),
-                  ),
-                  ListTile(
-                    leading: FaIcon(FontAwesomeIcons.wind),
-                    title: Text("Wind Speed"),
-                    trailing:
-                        Text(windSpeed != null ? windSpeed.toString() : "..."),
-                  ),
-                ],
-              ),
-            ),
-          ),*/
           SizedBox(
-            height: MediaQuery.of(context).size.height / 30,
+            height: MediaQuery.of(context).size.height / 50,
           ),
           FloatingActionButton(
             onPressed: _speechRecognitionAvailable && !_isListening
@@ -344,15 +293,6 @@ class _HomeState extends State<Home> {
                     ],
                   )
                 : FaIcon(FontAwesomeIcons.microphone),
-            /*onPressed: () async {
-              /*customLaunch("tel:2036045406"); //it works
-              getZipCode();
-              List i = test();*/
-              //print(i[1].ZipCode);
-              //print(lat + long + zip + loc);
-
-            },
-            child: FaIcon(FontAwesomeIcons.microphone),*/
           ),
         ],
       ),
@@ -411,15 +351,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        /*child: Text(
-          "\nNeed Local Emergency Service:\nDial: ___-___-____ or 911\n",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),*/
       ),
     );
   }
@@ -442,12 +373,6 @@ class _HomeState extends State<Home> {
 
   void onSpeechAvailability(bool result) =>
       setState(() => _speechRecognitionAvailable = result);
-
-  // void onCurrentLocale(String locale) {
-  //   print('_MyAppState.onCurrentLocale... $locale');
-  //   setState(
-  //       () => selectedLang = languages.firstWhere((l) => l.code == locale));
-  // }
 
   void onRecognitionStarted() {
     setState(() => _isListening = true);

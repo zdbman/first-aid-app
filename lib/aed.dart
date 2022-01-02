@@ -18,7 +18,6 @@ class aedPage extends StatelessWidget {
               maxScale: 4,
               child: ListView(
                 children: <Widget>[
-                  Text("Rotate Phone Horizontal"),
                   Image(
                     image: AssetImage("Assets/images/aed1.png"),
                     //height: MediaQuery.of(context).size.height / 3,
